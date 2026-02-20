@@ -64,7 +64,7 @@
 </div>
 <h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Dhanya Shree C V</h2>
 <div class="flex w-10 items-center justify-end">
-<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-primary hover:bg-primary/20 transition-colors" id="share-button">
 <span class="material-symbols-outlined">share</span>
 </button>
 </div>
@@ -349,7 +349,7 @@
 </div>
 <div class="grid grid-cols-1 gap-4">
 <div class="glass-card rounded-2xl overflow-hidden">
-<div class="h-32 bg-cover bg-center" style="background-image: url('{{DATA:IMAGE:IMAGE_12}}')"></div>
+<div class="h-32 bg-cover bg-center" style="background-image: url('{{DATA:IMAGE:IMAGE_10}}')"></div>
 <div class="p-4">
 <h4 class="font-bold text-primary italic">Theatrical Arts</h4>
 <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Member of Kumaraguru Haasya and Drama Troupe. Performed in major stage productions.</p>
@@ -411,4 +411,19 @@
 </a>
 </div>
 </div>
-</body></html>
+<script>
+    document.getElementById('share-button').addEventListener('click', async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                });
+            } catch (err) {
+                console.error('Error sharing:', err);
+            }
+        } else {
+            alert('Sharing is not supported on this browser. You can copy the URL: ' + window.location.href);
+        }
+    });
+</script></body></html>
